@@ -1,95 +1,69 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<cmath>
 using namespace std;
-
+struct stdData
+{string stdName[5];
+  int stdID[5];
+  int stdAge[5];
+  char stdGend[5];
+  double stdSc[5];
+  char stdGr[5];
+};
 int main()
-{
-	int sumofAge = 0;
-	double sumofScore = 0;
-	int maleNo = 0;
-	int femaleNo = 0;
-	struct student
-	{
-		string name;
-		string id;
-		int age;
-		char gender = ' ';
-		double score = -1;
-		char grade;
-	};
+{ stdData Access;
+  int mCount=0,fCount=0,TotAge=0;
+  double avSc=0,TotSc=0,avAge=0;
+  for(int i=0;i<=4;i++)
 
-	student a[2];
-
-	for(int i = 0; i <= 1; i++)
-	{
-		cout << "Enter Name: ";
-		cin >> a[i].name;
-		cout << "Enter ID number: ";
-		cin >> a[i].id;
-		cout << "Enter Age: ";
-		cin >> a[i].age;
-		
-		while(true)
-		{
-			cout << "Enter Gender: ";
-			cin >> a[i].gender;
-			if(a[i].gender == 'M' || a[i].gender== 'm' ||a[i].gender == 'f' || a[i].gender == 'F')
-				break;
-		}
-		
-		while(true)
-		{
-			cout << "Enter Score: ";
-			cin >> a[i].score;
-			if(a[i].score >= 0 && a[i].score <= 100)
-				break;
-		}
-
-		if(a[i].score >= 80)
-   a[i].grade= 'A'
-	
-	else if(a[i].score >= 70 && a[i].score<80)
-			a[i].grade = 'B';
-		else if(a[i].score >= 60 && a[i].score<70)
-			[hsjsi].grade = 'C';
-		else if(students[i].score >= 50)
-			stui].grade = 'D';
-		else if(students[i].score >= 40)
-			students[i].grade = 'E';
-		else
-			students[i].grade = 'F';
-
-		// computations
-		totalAge += students[i].age;
-		totalScore += students[i].score;
-		if(students[i].gender == 'M')
-			maleCount += 1;
-		else if(students[i].gender == 'F')
-			femaleCount += 1;
-
-		cout << endl << endl;
-	
-
-	// write records to file
-	fstream file;
-	file.open("output.txt", ios::out);
-	for(int i = 0; i <= 1; i++)
-	{
-		file << i+1 << ".  ";
-		file << students[i].idNumber << "  ";
-		file << as[i].name << "  ";
-		file << students[i].age << "  ";
-		file << students[i].gender << "  ";
-		file << students[i].score << "  ";
-		file << students[i].grade << endl;
-
-		cout << "Record " << i+1 << " was successfully written to file." << endl;
-	}
-	file << endl << "Average age: " << totalAge / 5 << endl;
-	file << "Average score: " << totalScore / 5 << endl;
-	file << "Male count: " << maleCount << endl;
-	file << "Female count: " << femaleCount << endl;
-	return 0;
+ {
+  cout<<"Input student "<<i+1<<"'s name and press enter"<<endl;
+cin>>Access.stdName[i];
+cout<<"Input student "<<i+1<<"'s ID and press enter"<<endl;
+cin>>Access.stdID[i];
+cout<<"Input student "<<i+1<<"'s age and press enter"<<endl;
+cin>>Access.stdAge[i];
+TotAge=TotAge+Access.stdAge[i];
+cout<<"Input student "<<i+1<<"'s gender, \"f\" for female or \"m\" for male and press enter"<<endl;
+cin>>Access.stdGend[i];
+if (Access.stdGend[i]=='f')
+    fCount++;
+else if (Access.stdGend[i]=='m')
+    mCount++;
+cout<<"Input student "<<i+1<<"'s score and press enter"<<endl;
+cin>>Access.stdSc[i];
+TotSc=TotSc+Access.stdSc[i];
+if (Access.stdSc[i] >= 90)
+Access.stdGr[i]= 'A';
+else if (Access.stdSc[i] >= 80)
+Access.stdGr[i]= 'B';
+else if (Access.stdSc[i] >= 70)
+Access.stdGr[i] = 'C';
+else if (Access.stdSc[i] >= 60)
+Access.stdGr[i]= 'D';
+else
+Access.stdGr[i]= 'F';
+ }
+ avAge=TotAge/5;
+ avSc=TotSc/5;
+//output into file
+ofstream std;
+std.open("new.txt", ios::app);
+std<<"**************************************************************"<<endl;
+std<<"ID number"<<"\tName"<<"\tAge"<<"\tGender"<<"\tScore"<<"\tGrade"<<endl;
+for(int i=0;i<=4;i++)
+   {
+    std<<i+1<<"."<<Access.stdID[i]<<"\t\t"<<Access.stdName[i]<<"\t"<<Access.stdAge[i]<<"\t"<<Access.stdGend[i];
+    std<<"\t"<<Access.stdSc[i]<<"\t"<<Access.stdGr[i]<<endl;
+   }
+    std<<endl;
+    std<<"The average age is "<<round(avAge)<<endl;
+    std<<"The average score is "<<avSc<<endl;
+    std<<"The total number of males is "<<mCount<<endl;
+    std<<"The total number of females is "<<fCount<<endl;
+    std.close();
+return 0;
 }
+			
+	
