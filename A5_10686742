@@ -1,0 +1,73 @@
+#include <iostream>
+#include<fstream>
+#include<string>
+#include<cmath>
+
+using namespace std;
+
+struct student
+{string name[5];
+  int id[5];
+  int age[5];
+  char gender[5];
+  double score[5];
+  char grade[5];
+};
+int main()
+{ student x;
+  int MaleNo=0;
+  int FemaleNo=0;
+  int SumAge=0;
+  double AveSc=0;
+  double SumSc=0;
+  double AveAge=0;
+  for(int i=0;i<=4;i++)
+
+ {
+  cout<<"Student #"<<i+1<<" input Name"<<endl;
+cin>>x.name[i];
+cout<<"Student #"<<i+1<<" input ID number"<<endl;
+cin>>x.id[i];
+cout<<"Student #"<<i+1<<" input Age"<<endl;
+cin>>x.age[i];
+SumAge=SumAge+x.age[i];
+cout<<"Student #"<<i+1<<" input Gender (M/F)"<<endl;
+cin>>x.gender[i];
+if (x.gender[i]=='f'||'F')
+    FemaleNo++;
+else if (x.gender[i]=='m'||'M')
+    MaleNo++;
+cout<<"Student #"<<i+1<<" input Score"<<endl;
+cin>>x.score[i];
+cout<<".............................................................."<<endl;
+SumSc=SumSc+x.score[i];
+if (x.score[i] >= 90)
+x.grade[i]= 'A';
+else if (x.score[i] >= 80)
+x.grade[i]= 'B';
+else if (x.score[i] >= 70)
+x.grade[i] = 'C';
+else if (x.score[i] >= 60)
+x.grade[i]= 'D';
+else
+x.grade[i]= 'F';
+ }
+ AveAge=SumAge/5;
+ AveSc=SumSc/5;
+
+
+cout<<"**************************************************************"<<endl;
+cout<<"Name "<<"\tID number"<<"\tAge"<<"\tGender"<<"\tScore"<<"\tGrade"<<endl;
+for(int i=0;i<=4;i++)
+   {
+    cout<<i+1<<"."<<x.name[i]<<"\t"<<x.id[i]<<"\t"<<x.age[
+    i]<<"\t"<<x.gender[i];
+    cout<<"\t"<<x.score[i]<<"\t"<<x.grade[i]<<endl;
+   }
+    cout<<endl;
+    cout<<"The average age is "<<AveAge<<endl;
+    cout<<"The average score is "<<AveSc<<endl;
+    cout<<"The total number of males is "<<MaleNo<<endl;
+    cout<<"The total number of females is "<<FemaleNo<<endl;
+return 0;
+}
